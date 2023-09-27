@@ -34,10 +34,10 @@ EOF
     google-chrome --version || yum install -y google-chrome-stable
     check_err
     print_log -n "下载chromedriver..."
-    chrome_version=$(google-chrome --version |awk '{print $NF}' |tail -n 1 |awk -F'.' '{print $1}')
-    chromedriver_version=$(curl -i -X GET "https://chromedriver.storage.googleapis.com" |grep -Eo "${chrome_version}\.[0-9]*\.[0-9]*\.[0-9]*/chromedriver_linux64\.zip" |tail -n 1)
+    chrome_version=$(google-chrome --version |awk '{print $NF}')
+    chromedriver_version=`https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/${chrome_version}/linux64/chromedriver-linux64.zip`
     [ -f chromedriver_linux64.zip ] && rm -rf chromedriver_linux64.zip
-    wget --no-check-certificate https://chromedriver.storage.googleapis.com/${chromedriver_version}
+    wget --no-check-certificate ${chromedriver_version}
     check_err
     [ -f /usr/bin/chromedriver ] && rm -rf /usr/bin/chromedriver
     unzip chromedriver_linux64.zip && mv chromedriver /usr/bin/ && chmode +x /usr/bin/chromedriver
