@@ -35,7 +35,7 @@ EOF
     check_err
     print_log -n "下载chromedriver..."
     chrome_version=$(google-chrome --version |awk '{print $NF}')
-    chromedriver_version=`https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/${chrome_version}/linux64/chromedriver-linux64.zip`
+    chromedriver_version=`echo "https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/${chrome_version}/linux64/chromedriver-linux64.zip"`
     [ -f chromedriver_linux64.zip ] && rm -rf chromedriver_linux64.zip
     wget --no-check-certificate ${chromedriver_version}
     check_err
